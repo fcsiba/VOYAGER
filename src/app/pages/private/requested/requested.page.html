@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button autoHide slot="start"><ion-icon class="sortBtn" src="../../../assets/svg/icon-menu.svg"></ion-icon></ion-menu-button>
+    <ion-label slot="start">Requested Services</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="requestboxDv">
+    <ion-row *ngIf="user.type === userTypes[1]" class="SearchDv">
+      <span *ngIf="!services.length" class="errorinfoDv">
+        <p class="errorTxt">No Services Requested Yet</p>
+      </span>
+      <ion-card *ngFor="let item of services">
+      <ion-row class="ProfileinfoDv">
+        <ion-col size="2" class="spaceDv">
+          <ion-avatar class="profileDv">
+            <img *ngIf="item.vehicleType === vehicleTypes[0]" src="../../../../assets/images/bus.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[1]" src="../../../../assets/images/car.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[2]" src="../../../../assets/images/train.png">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="6" class="spaceDDDv">
+          <div>
+            <!-- <h6>{{item.vendorName}}</h6><br> -->
+            <span class="PickDv">From : <p> {{item.source}}</p></span>
+            <span class="PickDv">To : <p>{{item.destination}}</p></span>
+            <span class="PickDv">Date : <p>{{item.scheduleDate | date}}</p></span>
+          </div>
+        </ion-col>
+        <ion-col size="4" class="spaceDDDv">
+          <div>
+            <span class="PickDv">Seats : <p>{{item.seats}}</p></span>
+            <span class="PickDv">Price : <p>{{item.price}} Rs.</p></span>
+            <div (click)="showInfoModal(item,true)" class="viewDv">
+              <span class="PickDv viewDv">View More</span>
+              <ion-icon src="../../../../assets/svg/icon-info-field.svg"></ion-icon>
+            </div>
+            <!-- <h6>{{item.vendorPhoneNumber}}</h6> -->
+              <!-- <span class="PickDv">Vehicle : <p>{{item.vehicleType}}</p></span> -->
+              <!-- <h6 class="PickDv">Regn. No : <p>{{item.regnNo}}</p></h6> -->
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="btnDv">
+      <ion-col size="12" class="spaceDv">
+        <ion-button class="commentDv" (click)="callVendor(item)">Call Vendor</ion-button>
+      </ion-col>
+      </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

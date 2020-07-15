@@ -1,0 +1,7 @@
+{
+  "name": "FYP-Voyager",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

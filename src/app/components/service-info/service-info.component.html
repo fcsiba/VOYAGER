@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon class="backBtn" (click)="dismiss()" slot="start" src="../../../assets/svg/icon-back.svg"></ion-icon>
+    <ion-label slot="start">Service Information</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="requestboxDv">
+    <ion-row>
+      <ion-card>
+        <ion-row class="ProfileinfoDv">
+          <ion-col size="6">
+            <span>From     :</span>
+            <span>To     :</span>
+            <span>Date     :</span>
+            <span>Seats     :</span>
+            <span>Price    :</span>
+            <span>Vehicle Type     :</span>
+            <span>Registration No. :</span>
+            <span>Description      :</span>
+            <span *ngIf="!validate">Vendor Name      :</span>
+            <span *ngIf="!validate">Vendor Phone     :</span>
+          </ion-col>
+          <ion-col size="6">
+            <p>{{service.source}}</p>
+            <p>{{service.destination}}</p>
+            <p>{{service.scheduleDate | date}}</p>
+            <p>{{service.seats}}</p>
+            <p>{{service.price}}</p>
+            <p>{{service.vehicleType}}</p>
+            <p>{{service.regnNo}}</p>
+            <p>{{service.description}}</p>
+            <p *ngIf="!validate">{{service.vendorName}}</p>
+            <p *ngIf="!validate">{{service.vendorPhoneNumber}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

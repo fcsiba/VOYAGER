@@ -1,0 +1,8 @@
+{
+    "/v2/api-next/flight-tracker": {
+      "target": "https://www.flightstats.com/",
+      "changeOrigin": true,
+      "secure": false,
+      "logLevel": "debug"
+    }
+  }

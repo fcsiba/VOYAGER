@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-label>My Profile</ion-label>
+    <ion-menu-button autoHide slot="start"><ion-icon style="color: white;" class="sortBtn" src="../../../assets/svg/icon-menu.svg"></ion-icon></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="borderDv"> 
+      <form #Form="ngForm" [ngClass]="viewMode === viewModes[0] ? 'disabled': '' ">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    <ion-row>
+      <ion-avatar class="profile">
+        <img *ngIf="!user.photoUrl" src="../../../../assets/images/dummyProfile.png">
+        <img *ngIf="user.photoUrl" [src]="user.photoUrl">
+        <input style="display:none" type="file" #fileInput (change)="onFileChanged($event)" ng2FileSelect [uploader]="uploader" />
+        <ion-icon (click)="fileInput.click()" src="../../../assets/svg/icon-camera.svg"></ion-icon>
+      </ion-avatar>
+    </ion-row>
+    <div class="formRowsDv">
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.firstName" #firstName="ngModel" [value]="user.firstName" name="firstName" text-capitalize></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="firstName.touched && firstName.invalid">Invalid First Name</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item> 
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.lastName" #lastName="ngModel" [value]="user.lastName" name="lastName" text-capitalize></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="lastName.touched && lastName.invalid">Invalid Last Name</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Email Address</ion-label>
+            <ion-input [disabled]="true" pattern="^[^@]+@[^@]+\.[^@]+$" type="email" required [(ngModel)]="user.email" #email="ngModel" [value]="user.email" name="email">
+            </ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="email.touched && email.invalid">Invalid Email</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow phone">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input minlength="11" maxlength="11" pattern="[0-9]*" required [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" [value]="user.phoneNumber" name="phoneNumber"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">Invalid Number</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow phone" *ngIf="user.type !== userTypes[2]">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">CNIC Number</ion-label>
+            <ion-input minlength="13" maxlength="13" pattern="[0-9]*" required [(ngModel)]="user.cnic" #cnic="ngModel" [value]="user.cnic" name="cnic"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="cnic.touched && cnic.invalid">Invalid CNIC</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="user.type !== userTypes[2]" class="fieldRow selectDv">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="floating">User Type</ion-label>
+            <ion-select [disabled]="true" required placeholder="Select Type" class="infoDv" [(ngModel)]="user.type" #type="ngModel" [value]="user.type" name="type">
+              <ion-select-option required [value]="userTypes[1]">Traveller</ion-select-option>
+              <ion-select-option required [value]="userTypes[0]">Vendor</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="type.touched && type.invalid">Invalid Type</ion-note>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  <ion-row class="btnRow">
+    <ion-col *ngIf="viewMode === viewModes[0]" size="12">
+      <ion-button (click)="toggleView()">Edit</ion-button>
+    </ion-col>
+    <ion-col class="spacedv" *ngIf="viewMode === viewModes[1]" size="6">
+      <ion-button (click)="toggleView(true)">Cacnel</ion-button>
+    </ion-col>
+    <ion-col class="spacedv" *ngIf="viewMode === viewModes[1]" size="6">
+      <ion-button [disabled]="Form.invalid" (click)="toggleView()">Submit</ion-button>
+    </ion-col>
+  </ion-row>  
+  </div>
+
+</ion-content>
+

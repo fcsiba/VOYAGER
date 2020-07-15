@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button autoHide slot="start"><ion-icon class="sortBtn" src="../../../assets/svg/icon-menu.svg"></ion-icon></ion-menu-button>
+    <!-- <ion-img class="logobtn" slot="start" src="../../../../assets/images/logo.png"></ion-img> -->
+    <ion-label slot="start">Home</ion-label>
+    <!-- <ion-icon class="railway" slot="end" name="train"></ion-icon>
+    <ion-icon slot="end" name="bus"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="requestboxDv">
+    <ion-row class="logodv">
+      <ion-col size="12">
+        <figure><img src="../../../assets/images/logo.png" /></figure>  
+        <div class="footer">
+          <ion-button>VOYAGER</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="SliderDv">
+      <ion-col size="12">
+        <ion-slides pager="true">
+        <ion-slide>
+          <div class="SliderInfoDv">
+            <figure><img src="../../../../assets/images/1.jpg"></figure>
+            <h1>CAR</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sapiente maxime odit porro? Minima, cupiditate non? Minus id tempora provident quaerat assumenda, mollitia vel earum blanditiis dignissimos ipsa non! Error.</p>
+          </div>
+        </ion-slide>   
+        <ion-slide>
+          <div class="SliderInfoDv">
+            <figure><img src="../../../../assets/images/2.jpg"></figure>
+            <h1>AEROPLANE</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sapiente maxime odit porro? Minima, cupiditate non? Minus id tempora provident quaerat assumenda, mollitia vel earum blanditiis dignissimos ipsa non! Error.</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="SliderInfoDv">
+            <figure><img src="../../../../assets/images/3.jpg"></figure>
+            <h1>TRAIN</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sapiente maxime odit porro? Minima, cupiditate non? Minus id tempora provident quaerat assumenda, mollitia vel earum blanditiis dignissimos ipsa non! Error.</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="SliderInfoDv">
+            <figure><img src="../../../../assets/images/4.jpg"></figure>
+            <h1>BUS</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sapiente maxime odit porro? Minima, cupiditate non? Minus id tempora provident quaerat assumenda, mollitia vel earum blanditiis dignissimos ipsa non! Error.</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="SliderInfoDv">
+            <figure><img src="../../../../assets/images/1.jpg"></figure>
+            <h1>ABOUT US</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sapiente maxime odit porro? Minima, cupiditate non? Minus id tempora provident quaerat assumenda, mollitia vel earum blanditiis dignissimos ipsa non! Error.</p>
+          </div>
+        </ion-slide>   
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <ion-row class="btnRow">
+      <ion-col size="12">
+        <ion-button (click)="goToDashboard()">Check Our Services</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

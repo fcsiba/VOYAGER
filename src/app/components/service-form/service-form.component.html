@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-label>Service Form</ion-label>
+    <ion-icon (click)="dismiss()" class="backBtn" slot="start" src="../../../assets/svg/icon-back.svg"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form #Form="ngForm">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    <div class="formRowsDv">
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="floating">Pickup</ion-label>
+            <ion-select required placeholder="Select City" class="infoDv" [(ngModel)]="service.source" #source="ngModel"
+              [value]="service.source" name="source">
+              <ion-select-option required *ngFor="let item of sourceCities" [value]="item">{{item}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="source.touched && source.invalid">Select Pickup</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="floating">Destination</ion-label>
+            <ion-select required placeholder="Select City" class="infoDv" [(ngModel)]="service.destination"
+              #destination="ngModel" [value]="service.destination" name="destination">
+              <ion-select-option required *ngFor="let item of destinationCities" [value]="item">{{item}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="destination.touched && destination.invalid">Select Destination</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Scheduled Date</ion-label>
+            <ion-datetime required placeholder="MMM DD, YYYY" display-format="MMM DD, YYYY" picker-format="DD:MMM:YYYY"
+              [value]="service.scheduleDate" [(ngModel)]="service.scheduleDate" #scheduleDate="ngModel"
+              name="scheduleDate"></ion-datetime>
+          </ion-item>
+          <ion-note color="danger" *ngIf="scheduleDate.touched && scheduleDate.invalid">Select Schedule Date</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow selectDv">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="floating">Vechicle Type:*</ion-label>
+            <ion-select required placeholder="Select Vehicle" class="infoDv" [(ngModel)]="service.vehicleType"
+              #vehicleType="ngModel" [value]="service.vehicleType" name="vehicleType">
+              <ion-select-option required *ngFor="let item of vehicleTypes" [value]="item">{{item | titlecase}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="vehicleType.touched && vehicleType.invalid">Select Vehicle Type</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Number Of Seats</ion-label>
+            <ion-input type="number" (keypress)="keyUp($event,price)" required [(ngModel)]="service.seats" pattern="[0-9]*" #seats="ngModel" [value]="service.seats" name="seats">
+            </ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="seats.touched && seats.invalid">Enter No. Of Seats</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Fare</ion-label>
+            <ion-input pattern="[0-9]*" type="number" (keypress)="keyUp($event,regnNo)" required [(ngModel)]="service.price" #price="ngModel" [value]="service.price" name="price">
+            </ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="price.touched && price.invalid">Enter Fare</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Regn.no</ion-label>
+            <ion-input (keypress)="keyUp($event,description)" required [(ngModel)]="service.regnNo" #regnNo="ngModel" [value]="service.regnNo" name="regnNo">
+            </ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="regnNo.touched && regnNo.invalid">Enter Registration No.</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Vehicle Description (Optional)</ion-label>
+            <ion-input [(ngModel)]="service.description" #description="ngModel" [value]="service.description" name="description">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  <ion-row class="btnRow">
+    <ion-button [disabled]="Form.invalid" (click)="submit()">Submit</ion-button>
+  </ion-row>
+  <ion-row *ngIf="!isNew" class="btnRow">
+    <ion-button [disabled]="service.expired" (click)="deleteServiceAlert()">Delete</ion-button>
+  </ion-row>
+</ion-content>

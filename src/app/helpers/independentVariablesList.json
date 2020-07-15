@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "name": "GFA",
+        "unit": "m2",
+        "value": 100
+    },
+    {
+        "id": 2,
+        "name": "GLA",
+        "unit": "m2",
+        "value": 100
+    },
+    {
+        "id": 3,
+        "name": "Site Area",
+        "unit": "m2",
+        "value": 1000
+    },
+    {
+        "id": 4,
+        "name": "Occupancy",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 5,
+        "name": "Parking",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 6,
+        "name": "Employee",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 7,
+        "name": "Seat",
+        "unit": "1",
+        "value": 1
+    },
+    {
+        "id": 8,
+        "name": "Pump",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 9,
+        "name": "Floor",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 10,
+        "name": "Student",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 11,
+        "name": "Bed",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 12,
+        "name": "Clinic",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 13,
+        "name": "Hole",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 14,
+        "name": "Tee",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 15,
+        "name": "Berth",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 16,
+        "name": "Mooring",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 17,
+        "name": "Dock",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 18,
+        "name": "Unit",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 19,
+        "name": "Labor",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 20,
+        "name": "Room",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 21,
+        "name": "Prayer Area",
+        "unit": "m2",
+        "value": 100
+    },
+    {
+        "id": 22,
+        "name": "Screen",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 23,
+        "name": "Classroom",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 24,
+        "name": "Bedroom",
+        "unit": "",
+        "value": 1
+    },
+    {
+        "id": 25,
+        "name": "Inspection Lane",
+        "unit": "",
+        "value": 1
+    }
+]

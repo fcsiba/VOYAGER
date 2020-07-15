@@ -1,0 +1,299 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button autoHide slot="start"><ion-icon class="sortBtn" src="../../../assets/svg/icon-menu.svg"></ion-icon></ion-menu-button>
+    <!-- <ion-img class="logobtn" slot="start" src="../../../../assets/images/logo.png"></ion-img> -->
+    <ion-label *ngIf="user.type === userTypes[0]" slot="start">Services</ion-label>
+    <ion-label *ngIf="user.type === userTypes[1]" slot="start">Search</ion-label>
+    <ion-label *ngIf="user.type === userTypes[2]" slot="start">Approval Requests</ion-label>
+    <!-- <ion-icon class="railway" slot="end" name="train"></ion-icon>
+    <ion-icon slot="end" name="bus"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="requestboxDv">
+    <!-- VENDOR DASHBOARD -->
+    <ion-row *ngIf="user.type === userTypes[0] && user.verified === 1" class="SearchDv">
+      <span *ngIf="!services.length" class="errorinfoDv">
+        <p class="errorTxt">No Services Provided Yet</p>
+      </span>
+      <span *ngIf="services.length" class="errorinfoDv">
+        <p class="errorTxt">Services</p>
+      </span>
+      <ion-card *ngFor="let item of services">
+        <ion-row class="ProfileinfoDv">
+          <ion-col size="2" class="spaceDv">
+            <ion-avatar class="profileDv">
+              <img *ngIf="item.vehicleType === vehicleTypes[0]" src="../../../../assets/images/bus.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[1]" src="../../../../assets/images/car.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[2]" src="../../../../assets/images/train.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="6" class="spaceDDDv">
+            <div>
+              <!-- <h6>{{item.vendorName}}</h6> -->
+              <span class="PickDv">From : <p> {{item.source}}</p></span>
+              <span class="PickDv">To : <p>{{item.destination}}</p></span>
+              <span class="PickDv">Date : <p>{{item.scheduleDate | date}}</p></span>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="spaceDDDv">
+            <div>
+              <span class="PickDv">Seats : <p>{{item.seats}}</p></span>
+              <span class="PickDv">Price : <p>{{item.price}} Rs.</p></span>
+              <div (click)="showInfoModal(item,true)" class="viewDv">
+                <span class="PickDv viewDv">View More</span>
+                <ion-icon src="../../../../assets/svg/icon-info-field.svg"></ion-icon>
+              </div>
+              <!-- <h6 class="PickDv">Regn. No : <p>{{item.regnNo}}</p></h6> -->
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="btnDv">
+          <ion-col size="6" class="spaceDv">
+            <ion-button (click)="requestsPopUp(item)" class="commentDv">Requests</ion-button>
+          </ion-col>
+          <ion-col size="6" class="spaceDv">
+            <ion-button (click)="attendantsPopUp(item)" class="commentDv">Attendees List</ion-button>
+          </ion-col>
+          <ion-col size="12" class="spaceDv">
+            <ion-button (click)="servicePopUp(item)" class="commentDv">Edit</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+    <span *ngIf="user.type === userTypes[0] && user.verified === 0" class="errorinfoDv">
+      <p class="errorTxt">Wait For Approval Of Your Account.</p>
+    </span>
+    <ion-fab *ngIf="user.type === userTypes[0] && user.verified === 1" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="servicePopUp()">
+        <!-- <ion-icon name="add"></ion-icon> -->
+        Add Service
+      </ion-fab-button>
+    </ion-fab>
+    <!-- TRAVELLER DASHBOARD -->
+    <ion-row *ngIf="user.type === userTypes[1] && user.verified === 1" class="SearchDv">
+      <ion-col size="12" class="formRowsDv">
+        <form #Form="ngForm">
+          <ion-row class="fieldRow">
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Date</ion-label>
+                <ion-datetime required placeholder="MMM DD, YYYY" display-format="MMM DD, YYYY" picker-format="DD:MMM:YYYY" [value]="search.scheduleDate" [(ngModel)]="search.scheduleDate" #scheduleDate="ngModel" name="scheduleDate"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Travel Via</ion-label>
+                <ion-select required placeholder="Select" class="infoDv" [(ngModel)]="search.medium" #medium="ngModel" [value]="search.medium" name="medium">
+                  <ion-select-option required *ngFor="let item of travelTypes" [value]="item">{{item}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" *ngIf="search.medium === travelTypes[0]">
+              <ion-item lines="none">
+                <ion-label position="floating">Pickup</ion-label>
+                <ion-select required placeholder="Select Pickup" class="infoDv" [(ngModel)]="search.source" #source="ngModel" [value]="search.source" name="source">
+                  <ion-select-option required *ngFor="let item of sourceCities" [value]="item">{{item}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" *ngIf="search.medium === travelTypes[0]">
+              <ion-item lines="none">
+                <ion-label position="floating">Destination</ion-label>
+                <ion-select required placeholder="Select Destination" class="infoDv" [(ngModel)]="search.destination" #destination="ngModel" [value]="search.destination" name="destination">
+                  <ion-select-option required *ngFor="let item of sourceCities" [value]="item">{{item}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" *ngIf="search.medium === travelTypes[1]">
+              <ion-item lines="none">
+                <ion-label position="floating">Pickup</ion-label>
+                <ion-select required placeholder="Select Pickup" class="infoDv" [(ngModel)]="search.source" #source="ngModel" [value]="search.source" name="source">
+                  <ion-select-option required *ngFor="let item of airports" [value]="item.key">{{item.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" *ngIf="search.medium === travelTypes[1]">
+              <ion-item lines="none">
+                <ion-label position="floating">Destination</ion-label>
+                <ion-select required placeholder="Select Destination" class="infoDv" [(ngModel)]="search.destination" #destination="ngModel" [value]="search.destination" name="destination">
+                  <ion-select-option required *ngFor="let item of airports" [value]="item.key">{{item.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12" *ngIf="search.medium === travelTypes[1]">
+              <ion-item lines="none">
+                <ion-label position="floating">Timings</ion-label>
+                <ion-select required placeholder="Select Timings" class="infoDv" [(ngModel)]="search.timings" #timings="ngModel" [value]="search.timings" name="timings">
+                  <ion-select-option required [value]="0">00:00-06:00</ion-select-option>
+                  <ion-select-option required [value]="6">06:00-12:00</ion-select-option>
+                  <ion-select-option required [value]="12">12:00-18:00</ion-select-option>
+                  <ion-select-option required [value]="18">18:00-00:00</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-button [disabled]="Form.invalid" (click)="searchServices()">Search</ion-button>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-button [disabled]="!searched" (click)="getAllServicesForTraveller()">Show All</ion-button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+      <span class="errorinfoDv">
+        <p class="errorTxt">Services
+          <label class="DropInfoDv" *ngIf="currentListing === travelTypes[0]">
+            <ion-icon (click)="toggleFilter()" src="../../../assets/svg/category.svg"></ion-icon>
+                <ion-row class="droprecomDv" *ngIf="showFilter">
+                <ion-col size="12" class="itemDv">
+                  <p (click)="applyFilter('all')">Show All</p>
+                </ion-col>
+                <ion-col size="12" class="itemDv">
+                  <p (click)="applyFilter(vehicleTypes[1])">Car</p>
+                </ion-col>
+                <ion-col size="12" class="itemDv">
+                  <p (click)="applyFilter(vehicleTypes[0])">Bus</p>
+                </ion-col>
+                <ion-col size="12" class="itemDv infoDv">
+                  <p (click)="applyFilter(vehicleTypes[2])">Train</p>
+                </ion-col>
+              </ion-row>
+          </label>
+        </p>
+      </span>
+      <span *ngIf="!getFilteredServices().length && currentListing === travelTypes[0] " class="errorinfoDv">
+        <p class="errorTxt">No Services Found</p>
+      </span>
+      <span *ngIf="!flights.length && search.medium === travelTypes[1] && currentListing === travelTypes[1]" class="errorinfoDv">
+        <p class="errorTxt">No Services Found</p>
+      </span>
+      <ion-card *ngFor="let item of getFilteredServices()">
+        <ion-row class="ProfileinfoDv">
+          <ion-col size="2" class="spaceDv">
+            <ion-avatar class="profileDv">
+              <!-- <img *ngIf="item.vehicleType === vehicleTypes[0]" src="../../../../assets/images/bus.png"> -->
+              <img *ngIf="item.vehicleType === vehicleTypes[0]" src="../../../../assets/images/bus.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[1]" src="../../../../assets/images/car.png">
+              <img *ngIf="item.vehicleType === vehicleTypes[2]" src="../../../../assets/images/train.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="6" class="spaceDDDv">
+            <div>
+              <!-- <h6>{{item.vendorName}}</h6> -->
+              <span class="PickDv">From : <p> {{item.source}}</p></span>
+              <span class="PickDv">To : <p>{{item.destination}}</p></span>
+              <span class="PickDv">Date : <p>{{item.scheduleDate | date}}</p></span>
+              
+            </div>
+          </ion-col>
+          <ion-col size="4" class="spaceDDDv">
+            <div>
+              <span class="PickDv">Seats : <p [ngClass]="item.seats === 0 ? 'seatsFull' : ''">{{item.seats}}</p></span>
+              <span class="PickDv">Price : <p>{{item.price}} Rs.</p></span>
+              <div (click)="showInfoModal(item,true)" class="viewDv">
+                <span class="PickDv viewDv">View More</span>
+                <ion-icon src="../../../../assets/svg/icon-info-field.svg"></ion-icon>
+              </div>
+              <!-- <span class="PickDv">Vehicle : <p>{{item.vehicleType}}</p></span> -->
+              <!-- <h6 class="PickDv">Regn. No : <p>{{item.regnNo}}</p></h6> -->
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="btnDv">
+          <ion-col size="12" class="spaceDv">
+            <ion-button [disabled]="!item.seats || item.expired" (click)="bookServiceAlert(item)" class="commentDv">Request</ion-button>
+          </ion-col>
+          <!-- <ion-col size="6" class="spaceDv">
+            <ion-button class="commentDv">Call Now</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button>Book Now</ion-button>
+          </ion-col> -->
+        </ion-row>
+      </ion-card>
+      <ion-card *ngFor="let item of flights">
+        <ion-row class="ProfileinfoDv">
+          <ion-col size="2" class="spaceDv">
+            <ion-avatar class="profileDv">
+              <img src="../../../../assets/images/airplane.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="6">
+            <div>
+              <!-- <h6>{{item.vendorName}}</h6> -->
+              <span class="PickDv">From : <p> {{item.departureAirport}}</p></span>
+              <span class="PickDv">To : <p>{{item.arrivalAirport}}</p></span>
+              <span class="PickDv">Airline : <p>{{item.carrier.name}}</p></span>
+              <span class="PickDv">Date : <p>{{item.sortTime | date}}</p></span>
+              
+            </div>
+          </ion-col>
+          <ion-col size="4">
+            <div>
+              <span class="PickDv">Departure : <p>{{item.departureTime.timeAMPM}}</p></span>
+              <span class="PickDv">Arrival : <p>{{item.arrivalTime.timeAMPM}}</p></span>
+              <span class="PickDv">Flight # : <p>{{item.carrier.flightNumber}}</p></span>
+              <span class="PickDv">Price : <p>{{item.fare}}+ Rs</p></span>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="btnDv">
+          <ion-col size="12" class="spaceDv">
+            <ion-button (click)="visitAirlineSite(item)" class="commentDv">Visit {{item.carrier.name}}</ion-button>
+          </ion-col>
+          <!-- <ion-col size="6" class="spaceDv">
+            <ion-button class="commentDv">Call Now</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button>Book Now</ion-button>
+          </ion-col> -->
+        </ion-row>
+      </ion-card>
+    </ion-row>
+    <span *ngIf="user.type === userTypes[1] && user.verified === 0" class="errorinfoDv">
+      <p class="errorTxt">Wait For Approval Of Your Account.</p>
+    </span>
+    <!-- ADMIN DASHBOARD -->
+    <span *ngIf="user.type === userTypes[2] && !users.length" class="errorinfoDv">
+      <p class="errorTxt">No Approval Requests.</p>
+    </span>
+    <span *ngIf="user.type === userTypes[2] && users.length" class="errorinfoDv">
+      <p class="errorTxt">Approval Requests.</p>
+    </span>
+    <ion-row *ngIf="user.type === userTypes[2] && users.length">
+      <ion-card *ngFor="let item of users">
+        <ion-row class="ProfileinfoDv">
+          <ion-col size="2" class="spaceDv">
+            <ion-avatar class="profileDv">
+              <img *ngIf="!item.photoUrl" src="../../../../assets/images/dummyProfile.png">
+              <img *ngIf="item.photoUrl" [src]="item.photoUrl">
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="7" class="spaceDDDv">
+            <div>
+              <span>{{item.fullName}}</span>
+              <p>{{item.phoneNumber}}</p>
+              <p>{{item.email}}</p>
+            </div>
+          </ion-col>
+          <ion-col size="3" class="spaceDDDv">
+            <div>
+              <span>{{item.createdOn | date}}</span>
+              <h6>{{item.type}}</h6>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="btnDv">
+          <ion-col size="12">
+            <ion-button (click)="approveUser(item)">Approve User</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

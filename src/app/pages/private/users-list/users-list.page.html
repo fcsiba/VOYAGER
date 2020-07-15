@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button autoHide slot="start"><ion-icon class="sortBtn" src="../../../assets/svg/icon-menu.svg"></ion-icon></ion-menu-button>
+    <ion-label slot="start">Users</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="SegmemtDv">
+      <ion-segment [value]="selectedTab" (ionChange)="changeTab($event)">
+        <ion-segment-button value="traveller" class="infoDv">TRAVELER</ion-segment-button>
+        <ion-segment-button value="vendor">VENDOR</ion-segment-button>
+      </ion-segment>
+  </ion-grid> 
+  <ion-grid *ngIf="selectedTab === 'traveller'" class="requestboxDv">
+    <ion-row *ngIf="tavellers.length">
+      <ion-card *ngFor="let item of tavellers">
+      <ion-row class="ProfileinfoDv">
+        <ion-col size="2" class="spaceDv">
+          <ion-avatar class="profileDv">
+            <img *ngIf="!item.photoUrl" src="../../../../assets/images/dummyProfile.png">
+            <img *ngIf="item.photoUrl" [src]="item.photoUrl">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="7" class="spaceDDDv">
+          <div>
+            <span>{{item.fullName}}</span>
+            <p>{{item.email}}</p>
+            <p>{{item.cnic}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="3" class="spaceDDDv">
+          <div>
+            <p>{{item.phoneNumber}}</p>
+            <h6>User Since :</h6>
+            <span>{{item.createdOn | date}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="btnDv">
+        <ion-col size="12">
+          <ion-button (click)="revokeUser(item)">Revoke User</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-card>
+    </ion-row>
+    <span *ngIf="!tavellers.length" class="errorinfoDv">
+      <p class="errorTxt">No Tavellers Found.</p>
+    </span>
+  </ion-grid>
+  <ion-grid *ngIf="selectedTab === 'vendor'" class="requestboxDv">
+    <ion-row *ngIf="vendors.length">
+      <ion-card *ngFor="let item of vendors">
+      <ion-row class="ProfileinfoDv">
+        <ion-col size="2" class="spaceDv">
+          <ion-avatar class="profileDv">
+            <img *ngIf="!item.photoUrl" src="../../../../assets/images/dummyProfile.png">
+            <img *ngIf="item.photoUrl" [src]="item.photoUrl">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="7" class="spaceDDDv">
+          <div>
+            <span>{{item.fullName}}</span>
+            <p>{{item.email}}</p>
+            <p>{{item.cnic}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="3" class="spaceDDDv">
+          <div>
+            <p>{{item.phoneNumber}}</p>
+            <h6>User Since :</h6>
+            <span>{{item.createdOn | date}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="btnDv">
+        <ion-col size="12">
+          <ion-button (click)="revokeUser(item)">Revoke User</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-card>
+    </ion-row>
+    <span *ngIf="!vendors.length" class="errorinfoDv">
+      <p class="errorTxt">No Vendors Found.</p>
+    </span>
+  </ion-grid>
+</ion-content>
+

@@ -1,0 +1,113 @@
+<ion-content>
+  <ion-icon class="backBtn" (click)="goToSignIn()" src="../../../assets/svg/icon-back.svg"></ion-icon>
+  <figure><img src="../../../../assets/images/logo.png" /></figure>
+  <ion-label class="formHeading">Sign Up</ion-label>
+  <form #Form="ngForm">
+    <ion-grid class="formRowsDv">
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/icon-user2.svg" slot="start" class="userIcon"></ion-icon>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.firstName" #firstName="ngModel" [value]="user.firstName" name="firstName"
+              text-capitalize></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="firstName.touched && firstName.invalid">Invalid First Name</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/icon-user2.svg" slot="start" class="userIcon"></ion-icon>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.lastName" #lastName="ngModel" [value]="user.lastName" name="lastName"
+              text-capitalize></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="lastName.touched && lastName.invalid">Invalid Last Name</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow selectDv">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-icon src="../../../assets/svg/icon-user2.svg" slot="start" class="userIcon"></ion-icon>
+            <ion-label position="floating">User Type</ion-label>
+            <ion-select required placeholder="Select Type" class="infoDv" [(ngModel)]="user.type" #type="ngModel" [value]="user.type" name="type">
+              <ion-select-option required [value]="userTypes[1]">Traveller</ion-select-option>
+              <ion-select-option required [value]="userTypes[0]">Vendor</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="type.touched && type.invalid">Invalid Type</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/email4.svg" slot="start" class="emailIcon"></ion-icon>
+            <ion-label position="floating">Email Address</ion-label>
+            <ion-input pattern="^[^@]+@[^@]+\.[^@]+$" type="email" required [(ngModel)]="user.email" #email="ngModel" [value]="user.email" name="email">
+            </ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="email.touched && email.invalid">Invalid Email</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow phone">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/phone4.svg" slot="start" class="userIcon phoneDv"></ion-icon>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input minlength="11" maxlength="11" pattern="[0-9]*" required [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" [value]="user.phoneNumber" name="phoneNumber"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">Invalid Number</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow phone" *ngIf="user.type !== userTypes[2]">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">CNIC Number</ion-label>
+            <ion-icon src="../../../assets/svg/phone4.svg" slot="start" class="userIcon phoneDv"></ion-icon>
+            <ion-input minlength="13" maxlength="13" pattern="[0-9]*" required [(ngModel)]="user.cnic" #cnic="ngModel" [value]="user.cnic" name="cnic"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="cnic.touched && cnic.invalid">Invalid CNIC</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/password1.svg" slot="start" class="password-icon"></ion-icon>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" required [(ngModel)]="passwordTxt" #password="ngModel" [value]="passwordTxt" name="password" minlength="6"></ion-input>
+            <ion-icon (click)="toggleShowPassword(password)" *ngIf="!showPassword"
+              src="../../../assets/svg/icon-password-visible.svg" slot="end" class="password-toggle-icon"></ion-icon>
+            <ion-icon (click)="toggleShowPassword(password)" *ngIf="showPassword"
+              src="../../../assets/svg/icon-password-hidden.svg" slot="end" class="password-toggle-icon"></ion-icon>
+          </ion-item>
+          <ion-note color="danger" *ngIf="password.touched && password.invalid">Invalid Password</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fieldRow">
+        <ion-col>
+          <ion-item>
+            <ion-icon src="../../../assets/svg/password1.svg" slot="start" class="password-icon"></ion-icon>
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input type="password" required [(ngModel)]="confirmPasswordTxt" #confirmPassword="ngModel" [value]="confirmPasswordTxt" name="confirmPassword" minlength="6"></ion-input>
+            <ion-icon (click)="toggleShowConfirmPassword(confirmPassword)" *ngIf="!showConfirmPassword"
+              src="../../../assets/svg/icon-password-visible.svg" slot="end" class="password-toggle-icon"></ion-icon>
+            <ion-icon (click)="toggleShowConfirmPassword(confirmPassword)" *ngIf="showConfirmPassword"
+              src="../../../assets/svg/icon-password-hidden.svg" slot="end" class="password-toggle-icon"></ion-icon>
+          </ion-item>
+          <ion-note color="danger" *ngIf="confirmPassword.touched && passwordTxt !== confirmPasswordTxt">Password Mismatch</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row class="btnRow">
+        <ion-col>
+          <ion-button [disabled]="Form.invalid || passwordTxt !== confirmPasswordTxt" (click)="signUp()">SIGNUP</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <div class="footer">
+    <ion-label class="signup"><span>Already have an account?</span>
+      <ion-button (click)="goToSignIn()">Sign In HERE</ion-button>
+    </ion-label>
+  </div>
+</ion-content>

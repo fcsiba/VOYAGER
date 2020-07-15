@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="dismiss()" class="backBtn" slot="start" src="../../../assets/svg/icon-back.svg"></ion-icon>
+    <ion-label slot="start">Attendants</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="requestboxDv">
+    <span *ngIf="!attendants.length" class="errorinfoDv">
+      <p class="errorTxt">No Attendants Found.</p>
+    </span>
+    <span *ngIf="attendants.length" class="errorinfoDv">
+      <p class="errorTxt">Attendants</p>
+    </span>
+    <ion-row *ngIf="attendants.length">
+      <ion-card *ngFor="let item of attendants">
+      <ion-row class="ProfileinfoDv">
+        <ion-col size="2" class="spaceDv">
+          <ion-avatar class="profileDv">
+            <img *ngIf="!item.photoUrl" src="../../../../assets/images/dummyProfile.png">
+            <img *ngIf="item.photoUrl" [src]="item.photoUrl">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="7" class="spaceDDDv">
+          <div>
+            <span>{{item.fullName}}</span>
+            <p>{{item.phoneNumber}}</p>
+            <!-- <p>{{item.email}}</p> -->
+          </div>
+        </ion-col>
+        <ion-col size="3" class="spaceDDDv">
+          <div>
+            <!-- <span>{{item.createdOn | date}}</span>
+            <h6>{{item.type}}</h6> -->
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="btnDv">
+        <ion-col size="12">
+          <!-- <ion-button (click)="revokeUser(item)" *ngIf="item.type === userTypes[0]">Revoke Vendor</ion-button> -->
+        </ion-col>
+      </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

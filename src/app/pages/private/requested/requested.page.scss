@@ -1,0 +1,20 @@
+ion-header {
+    background: linear-gradient(to right, #2ab7fe 0%,#3090fe 100%);
+    ion-toolbar {
+      transition: 0.5s all ease-in-out;--background: none;--box-shadow: none;padding-right: 8px;
+      ion-label {font-weight: 400;font-family: "Poppins";text-align: left;color: white;font-size: 16px;margin: 0;padding: 0px;letter-spacing: 0px;margin-left: 15px;text-transform: uppercase;} 
+      ion-img {width: 45px;padding-left: 5px;padding-top: 0px;}
+      .sortBtn {font-size: 1.1rem;color: white;color: white;padding-right: 5px;}
+      ion-icon {
+        color: white;font-size: 1.5rem;cursor: pointer;
+        &.railway {padding-right: 5px;cursor: pointer;}
+      }
+    }
+  }
+  ion-content {
+    cursor: pointer;
+    .formRowsDv .fieldRow {margin-bottom: 0px;margin: 10px 0px;padding: 0;border: none;}
+    .formRowsDv .fieldRow ion-col {padding: 5px;}
+    .requestboxDv {margin: 0px 10px;}
+    .formRowsDv .fieldRow ion-item.item-has-focus, .formRowsDv .fieldRow ion-item.item-has-placeholder, .formRowsDv .fieldRow ion-item.item-has-value {border-bottom: 1px solid #7c859f47;padding: 5px 0px;--padding-start: 0px;}
+  }

@@ -1,0 +1,122 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list>
+          <ion-list-header>
+            <ion-label *ngIf="user"><ion-img class="logobtn" slot="start" src="../../../../assets/images/logo.png"></ion-img>VOYAGER</ion-label>
+          </ion-list-header>
+
+            <ion-menu-toggle *ngIf="user.id && user.type === userTypes[2]">
+              <ion-item (click)="goToDashboard()" lines="none">
+                <ion-label>User Requests</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToServicesList()" lines="none">
+                <ion-label>Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToList()" lines="none">
+                <ion-label>Users</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToProfile()" lines="none">
+                <ion-label>Admin Profile</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle *ngIf="user.id && user.type === userTypes[1]">
+              <ion-item (click)="goToHome()" lines="none">
+                <ion-label>Home</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToDashboard()" lines="none">
+                <ion-label>Search</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToRequestList()" lines="none">
+                <ion-label>Requested Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToServicesList()" lines="none">
+                <ion-label>Confirmed Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToProfile()" lines="none">
+                <ion-label>My Profile</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle *ngIf="user.id && user.type === userTypes[0]">
+              <ion-item (click)="goToHome()" lines="none">
+                <ion-label>Home</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToDashboard()" lines="none">
+                <ion-label>Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToProfile()" lines="none">
+                <ion-label>My Profile</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <!-- <ion-menu-toggle *ngIf="user.id">
+              <ion-item *ngIf="user.type !== userTypes[2]" (click)="goToHome()" lines="none">
+                <ion-label>Home</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToDashboard()" lines="none">
+                <ion-label>Dashboard</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToProfile()" lines="none">
+                <ion-label>My Profile</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item *ngIf="user.type === userTypes[2]" (click)="goToList()" lines="none">
+                <ion-label>Users</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item *ngIf="user.type === userTypes[2] || user.type === userTypes[1]" (click)="goToServicesList()" lines="none">
+                <ion-label>Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item *ngIf="user.type === userTypes[1]" (click)="goToRequestList()" lines="none">
+                <ion-label>Requested Services</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+            </ion-menu-toggle> -->
+            <ion-menu-toggle *ngIf="!user.id">
+              <ion-item (click)="goToHome()" lines="none">
+                <ion-label>Home</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToSignIn()" lines="none">
+                <ion-label>Sign In</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToSignUp()" lines="none">
+                <ion-label>Sign Up</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item (click)="goToForgetPassword()" lines="none">
+                <ion-label>Forgot Password</ion-label>
+                <ion-icon src="../assets/svg/dropdown2.svg" slot="end"></ion-icon>
+              </ion-item>
+            </ion-menu-toggle>            
+        </ion-list>
+      </ion-content>
+      <ion-footer *ngIf="user.id">
+          <ion-item lines="none" (click)="logOutUser()">
+            <ion-label>Log Out</ion-label>
+            <ion-icon src="../assets/svg/logout.svg" slot="start"></ion-icon>
+          </ion-item>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

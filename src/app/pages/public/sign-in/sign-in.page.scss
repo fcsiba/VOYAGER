@@ -1,0 +1,44 @@
+ion-content{
+    background: url(../../../../assets/images/background.jpg) no-repeat;background-size: cover;
+    >figure{margin: 5vh auto 1vh;width: 180px;}
+    .titleDv {
+        display: flex;align-items: center;justify-content: flex-end;padding-right: 15px;transition: 0.5s all ease-in-out;padding-bottom: 15px;padding-top: 15px;
+        .backBtn {margin: 0px auto 0px 0px;}
+         ion-label {text-align: end;font-weight: 500;font-family: "Roboto";color: #7c859f;font-size: 12px;text-transform: uppercase;}
+    }
+    .formRowsDv .fieldRow ion-item {--min-height: 35px !important;}
+    .acountsDv {
+    ion-col {
+      display: flex;text-align:center;justify-content: center;align-items:center;padding: 0;margin: 0;
+      span{
+        font-family: "Roboto";display: block;color: #7c859f;font-size: 12px;margin:15px 0px 0px;
+        &:after{content: "";background: #7c859f8c;width: 20px;height: 1px;position: absolute;right: -105px;left: 0;top: 22px;margin: auto;}
+        &:before{content: "";background: #7c859f8c;width: 20px;height: 1px;position: absolute;left: -105px;right: 0;top: 22px;margin: auto;}
+      }
+      ion-button {
+        &.googleDv {
+          border-radius: 4px;--color-activated: #2b2e31;--color-focused: #2b2e31;--color-hover: #2b2e31;--color: #2b2e31;margin-inline-start: 0;margin-inline-end: 0;--border-radius: 4px;margin: 10px 0px 0px 5px;border-radius: 4px;font-family: "Poppins";border: 1px solid #d3d7e1;--background: none;--box-shadow: none;--background-activated: none;--background-focused: none;--background-hover: none;--color: #6a6c6e;--padding-start: 0px;--padding-bottom: 0px;--padding-end: 0px;font-size: 12px;height: 50px;width: 100%;--padding-top: 0px;letter-spacing: .1px;
+          ion-icon {font-size: 0.9rem;margin: 0px 10px;cursor: pointer;}
+        }
+        &.fbDv {
+          border-radius: 4px; --color-activated: #ffffff;--color-focused: #ffffff;--color-hover: #ffffff;margin-inline-start: 0;margin-inline-end: 0;--border-radius: 4px;margin: 10px 5px 0px 0px;font-family: "Poppins";border: none;--background: #3b5999;--box-shadow: none;--background-activated: #3b5999;--background-focused: #3b5999;--background-hover: #3b5999;color: white;--padding-start: 0px;--padding-bottom:0px;--padding-end: 0px;--padding-top: 0px;font-size: 12px;height: 50px;width: 100%;letter-spacing: .1px;
+          ion-icon {font-size: 0.9rem;margin: 0px 10px;cursor: pointer;}
+        }
+      }
+    }
+    }
+    .formHeading{
+        font-family: "Poppins";display: block;text-align: center;color: #000;font-weight: 500;font-size: 17px;position: relative;margin: 0 auto 15px;
+        span{display: block;font-weight: 300;font-size: 12px;margin-top: 14px;letter-spacing: 0px;margin-left: 2px;font-family:"Roboto";}
+        &:after{content: "";background: #7c859f8c;width: 20px;height: 1px;position: absolute;bottom: -5px;left: 0;right: 0;margin: auto;}
+    }
+    .footer{
+        text-align: center;padding: 30px 0px 5px;
+        span{font-family: "Roboto";display: block;color: #7c859f;font-size: 12px;}
+        ion-button{
+            font-family: "Poppins";--background: transparent;--box-shadow: transparent;--background-activated: transparent;--background-focused: transparent;--background-hover: transparent;color: #2da8fe;font-weight: 500;height: 20px;font-size: 14px;--color: #2da8fe;--color-activated: #2da8fe;--color-focused: #2da8fe;
+            &:after{content: "";background: #2da8fe;width: 85px;height: 2px;position: absolute;left: 0;right: 0;margin: auto;}
+        }
+    }
+    .formRowsDv .btnRow ion-button {font-size: 13px;}
+}

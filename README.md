@@ -1,6 +1,7 @@
 # VOYAGER
-## FYP Fall 2019
+FYP Fall 2019
 
+## Project Description
 The “Voyager” is a comparative platform based mobile application which helps people to find the best possible means of transport between two locations, among both short and long distances. The user is enabled to assess between a variety of options and then choose as per his/her criteria, whether its focused-on cost variation or any other basis like duration of the trip.
 
 ### To build and run app ###

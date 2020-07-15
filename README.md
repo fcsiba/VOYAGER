@@ -3,9 +3,9 @@ FYP Fall 2019
 
 The “Voyager” is a comparative platform based mobile application which helps people to find the best possible means of transport between two locations, among both short and long distances. The user is enabled to assess between a variety of options and then choose as per his/her criteria, whether its focused-on cost variation or any other basis like duration of the trip.
 
-# To build and run app #
+### To build and run app ###
 
-# FOR WEB APPLICATION #
+#### FOR WEB APPLICATION ####
 To work with Angular & Ionic we need following set of tools to be installed in your machine.
 
 1. VS Code for IDE.
@@ -21,7 +21,7 @@ To work with Angular & Ionic we need following set of tools to be installed in y
 5. To Run web application, run command below 
     ionic serve
 
-# FOR MOBILE APPLICATION #
+#### FOR MOBILE APPLICATION ####
 To work with Ionic we need following set of tools to be installed in your machine.
 
 1. Android SDK (https://developer.android.com/studio/)
@@ -48,7 +48,7 @@ This Command will build an .apk file which can be installed on any android smart
   3. To run application on Emulator
       ionic cordova run android
 
-# Account Login #
+### Account Login ###
 
 Traveller Account: email: demo@yahoo.com pw: 12345678
 
